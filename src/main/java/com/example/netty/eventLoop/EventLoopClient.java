@@ -28,7 +28,7 @@ public class EventLoopClient {
                 nioSocketChannel.pipeline().addLast(new StringEncoder());   //编码器
             }
         });
-        //连接服务器
+        //连接服务器 异步非堵塞
         ChannelFuture connect = client.connect("localhost", 8080);
         /*阻塞方法，直到连接建立 返回值代表连接对象*/
         Channel channel = connect.sync().channel();
@@ -37,5 +37,17 @@ public class EventLoopClient {
 
         System.out.println(channel);
         System.out.println("");
+        //*关闭连接*//
+        channel.close();
+
+        /*nio线程处理*/
+        /*在nio线程连接建立好之后，调用*/
+      /*  connect.addListener((ChannelFutureListener) channelFuture -> {
+            Channel channel = connect.channel();
+            //发送消息
+            channel.writeAndFlush("hello word");
+            *//*关闭连接*//*
+            channel.close();
+        });*/
     }
 }

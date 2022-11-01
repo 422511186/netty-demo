@@ -1,5 +1,6 @@
 package com.example.netty.eventLoop;
 
+import io.netty.channel.DefaultEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.util.NettyRuntime;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,8 @@ public class TestEventLoop {
     public static void main(String[] args) {
         // 创建事件循环组
         NioEventLoopGroup group = new NioEventLoopGroup(1);//io 事件、普通任务、定时任务
-//        DefaultEventLoop eventExecutors = new DefaultEventLoop(); // 普通任务、定时任务
+
+        DefaultEventLoop eventExecutors = new DefaultEventLoop(); // 普通任务、定时任务
 
         log.info("core count:{}", NettyRuntime.availableProcessors());
 

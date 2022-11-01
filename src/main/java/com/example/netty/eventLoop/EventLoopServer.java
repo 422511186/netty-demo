@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * netty 服务端
+ *
  * @author huangzhenyu
  * @date 2022/10/28
  */
@@ -41,14 +43,13 @@ public class EventLoopServer {
                         ctx.fireChannelRead(msg);
                     }
                 });
-                ch.pipeline().addLast(eventLoop, "eventLoop-2", new ChannelInboundHandlerAdapter() {
-                    @Override
-                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                        ByteBuf buf = (ByteBuf) msg;
-                        log.info(buf.toString(StandardCharsets.UTF_8));
-                    }
-                });
-
+//                ch.pipeline().addLast(eventLoop, "eventLoop-2", new ChannelInboundHandlerAdapter() {
+//                    @Override
+//                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+//                        ByteBuf buf = (ByteBuf) msg;
+//                        log.info(buf.toString(StandardCharsets.UTF_8));
+//                    }
+//                });
             }
         }).bind(8080);
     }
